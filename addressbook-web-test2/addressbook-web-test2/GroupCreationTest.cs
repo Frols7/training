@@ -46,9 +46,9 @@ namespace GroupCreationTest
             Login(new AccountData("admin", "secret"));
             GoToGroupPage();
             InitNewGroupCreation();
-            GroupData group = new GroupData("aa1");
-            group.Header = "aa1";
-            group.Footer = "aa1";
+            GroupData group = new GroupData("aa2");
+            group.Header = "aa2";
+            group.Footer = "aa2";
             FillGroupForm(group);
             SubmitGroupCreation();
             ReturnToGroupsPage();
