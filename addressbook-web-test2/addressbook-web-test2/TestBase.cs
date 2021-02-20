@@ -15,7 +15,12 @@ namespace WebAddressbookTest
         protected IWebDriver driver;
         private StringBuilder verificationErrors;
         protected string baseURL;
-        private bool acceptNextAlert = true;
+
+        protected LoginHelper loginHelper;
+        protected NavigationHelper navigator;
+        protected GroupHelper groupHelper;
+        protected ContactHelper contactHelper;
+
 
         [SetUp]
         public void SetupTest()
@@ -23,6 +28,11 @@ namespace WebAddressbookTest
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook";
             verificationErrors = new StringBuilder();
+
+            loginHelper = new LoginHelper(driver);
+            navigator = new NavigationHelper(driver, baseURL);
+            groupHelper = new GroupHelper(driver);
+            contactHelper = new ContactHelper(driver);
         }
 
         [TearDown]
@@ -37,68 +47,6 @@ namespace WebAddressbookTest
                 // Ignore errors if unable to close the browser
             }
             Assert.AreEqual("", verificationErrors.ToString());
-        }
-        protected void OpenHomePage()
-        {
-            driver.Navigate().GoToUrl(baseURL);
-        }
-        protected void Login(AccountData account)
-        {
-            driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-        protected void GoToGroupPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
-        protected void InitNewGroupCreation()
-        {
-            driver.FindElement(By.Name("new")).Click();
-        }
-        protected void FillGroupForm(GroupData group)
-        {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
-        }
-        protected void SubmitGroupCreation()
-        {
-            driver.FindElement(By.Name("submit")).Click();
-        }
-        protected void ReturnToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("group page")).Click();
-        }
-        protected void LoginOut()
-        {
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-        protected void CreatNewContact(ContactData contact)
-        {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
-            driver.FindElement(By.Name("submit")).Click();
-        }
-        protected void ReturToHomePage()
-        {
-            driver.FindElement(By.LinkText("home")).Click();
-        }
-        protected void AddNewContact()
-        {
-            driver.FindElement(By.LinkText("add new")).Click();
         }
     }
 }
