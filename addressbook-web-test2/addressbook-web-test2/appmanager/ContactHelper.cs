@@ -15,6 +15,28 @@ namespace WebAddressbookTest
         {
         }
 
+        public ContactHelper RemoveContact(int m)
+        {
+            SelectContact(m);
+            DeleteContact();
+            return this;
+
+        }
+
+        public ContactHelper SelectContact(int m)
+
+        {
+            driver.FindElement(By.XPath("//input[@id='" + m + "']")).Click();
+            return this;
+        }
+
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
         public ContactHelper CreateContact(ContactData contact)
         {
             AddNewContact();
@@ -26,13 +48,13 @@ namespace WebAddressbookTest
         public ContactHelper ModifyContact(int e, ContactData newContact)
         {
             EditContact(e);
-            DeleteLastFirstName();
+            ClearLastFirstName();
             UpdateContact(newContact);
             ReturToHomePage();
             return this;
         }
 
-        public ContactHelper DeleteLastFirstName()
+        public ContactHelper ClearLastFirstName()
         {
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("lastname")).Clear();
