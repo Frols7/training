@@ -25,6 +25,28 @@ namespace WebAddressbookTest
             ReturnToGroupsPage();
             return this;
         }
+
+        public GroupHelper Remove(int p)
+        {
+            manager.Navigator.GoToGroupPage();
+            SelectGroup(2);
+            DeleteGroup();
+            ReturnToGroupsPage();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(int p)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + p + "]")).Click();
+            return this;
+        }
+
+        public GroupHelper DeleteGroup()
+        {
+            driver.FindElement(By.Name("delete")).Click();
+            return this;
+        }
+
         public GroupHelper InitNewGroupCreation()
         {
             driver.FindElement(By.Name("new")).Click();
