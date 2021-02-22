@@ -22,6 +22,39 @@ namespace WebAddressbookTest
             ReturToHomePage();
             return this;
         }
+
+        public ContactHelper ModifyContact(int e, ContactData newContact)
+        {
+            EditContact(e);
+            DeleteLastFirstName();
+            UpdateContact(newContact);
+            ReturToHomePage();
+            return this;
+        }
+
+        public ContactHelper DeleteLastFirstName()
+        {
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("lastname")).Clear();
+            return this;
+        }
+
+        public ContactHelper UpdateContact(ContactData contact)
+        {
+            driver.FindElement(By.Name("firstname")).Click();
+            driver.FindElement(By.Name("firstname")).Clear();
+            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
+            driver.FindElement(By.Name("lastname")).Clear();
+            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public ContactHelper EditContact(int e)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + e + "]")).Click();
+            return this;
+        }
         public ContactHelper CreatNewContact(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
