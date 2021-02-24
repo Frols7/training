@@ -15,18 +15,18 @@ namespace WebAddressbookTest
         {
         }
 
-        public ContactHelper RemoveContact(int m)
+        public ContactHelper RemoveContact()
         {
-            SelectContact(m);
+            SelectContact();
             DeleteContact();
             return this;
 
         }
 
-        public ContactHelper SelectContact(int m)
+        public ContactHelper SelectContact()
 
         {
-            driver.FindElement(By.XPath("//input[@id='" + m + "']")).Click();
+            driver.FindElement(By.XPath("//input[@id][1]")).Click();
             return this;
         }
 
