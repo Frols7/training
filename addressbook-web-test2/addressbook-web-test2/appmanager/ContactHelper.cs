@@ -15,18 +15,18 @@ namespace WebAddressbookTest
         {
         }
 
-        public ContactHelper RemoveContact()
+        public ContactHelper RemoveContact(int s)
         {
-            SelectContact();
+            SelectContact(s);
             DeleteContact();
             return this;
 
         }
 
-        public ContactHelper SelectContact()
+        public ContactHelper SelectContact(int s)
 
         {
-            driver.FindElement(By.XPath("//input[@id][1]")).Click();
+            driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
             return this;
         }
 
@@ -63,12 +63,8 @@ namespace WebAddressbookTest
 
         public ContactHelper UpdateContact(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
-            driver.FindElement(By.Name("update")).Click();
+            Type(By.Name("firstname"), contact.FirstName);
+            Type(By.Name("lastname"), contact.LastName);
             return this;
         }
 
@@ -79,11 +75,8 @@ namespace WebAddressbookTest
         }
         public ContactHelper CreatNewContact(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Click();
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.FirstName);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.LastName);
+            Type(By.Name("firstname"), contact.FirstName);
+            Type(By.Name("lastname"), contact.LastName);
             driver.FindElement(By.Name("submit")).Click();
             return this;
         }

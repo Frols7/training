@@ -14,11 +14,11 @@ namespace WebAddressbookTest
         [Test]
         public void GropModifacationTest1()
         {
-            GroupData newData = new GroupData("eee");
-            newData.Header = "www";
-            newData.Footer = "fff";
+            GroupData newData = new GroupData("new");
+            newData.Header = "type";
+            newData.Footer = "res";
 
-            app.Groups.Modifai(1, newData);
+            app.Groups.Modifai(3, newData);
         }
     }
 }

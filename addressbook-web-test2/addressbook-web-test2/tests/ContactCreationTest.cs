@@ -15,8 +15,8 @@ namespace WebAddressbookTest
         [Test]
         public void TheUntitledTestCaseTest()
         {
-            ContactData contact = new ContactData("Vova");
-            contact.LastName = "Vovanich";
+            ContactData contact = new ContactData("Petro");
+            contact.LastName = "Petrovich";
 
             app.Contacts.CreateContact(contact);
         }
