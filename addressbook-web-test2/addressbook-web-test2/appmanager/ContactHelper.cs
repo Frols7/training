@@ -24,7 +24,6 @@ namespace WebAddressbookTest
         }
 
         public ContactHelper SelectContact(int s)
-
         {
             driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
             return this;
