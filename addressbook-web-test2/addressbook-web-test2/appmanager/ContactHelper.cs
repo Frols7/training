@@ -25,8 +25,20 @@ namespace WebAddressbookTest
 
         public ContactHelper SelectContact(int s)
         {
-            driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
-            return this;
+            if (IsElementPresent(By.Name("selected[]")))
+            {
+                driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
+                return this;
+            }
+            else
+            {
+                ContactData contact = new ContactData("Frol");
+                contact.LastName = "Sergeevich";
+
+                manager.Contacts.CreateContact(contact);
+                SelectContact(s);
+                return this;
+            }
         }
 
         public ContactHelper DeleteContact()
@@ -69,7 +81,8 @@ namespace WebAddressbookTest
 
         public ContactHelper EditContact(int e)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + e + "]")).Click();
+            //driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + e + "]")).Click();
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
         public ContactHelper CreatNewContact(ContactData contact)

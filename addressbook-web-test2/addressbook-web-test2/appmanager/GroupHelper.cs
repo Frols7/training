@@ -53,7 +53,15 @@ namespace WebAddressbookTest
                 driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + p + "]")).Click();
                 return this;
             }
-            return this;
+            else
+            {
+                GroupData group = new GroupData("qwesdasd");
+                group.Header = "qwqw";
+                group.Footer = "asdsdad";
+                manager.Groups.Create(group);
+                SelectGroup(p);
+                return this;
+            }
         }
 
         public GroupHelper EditGroup()
