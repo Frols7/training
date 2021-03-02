@@ -40,30 +40,17 @@ namespace WebAddressbookTest
         public GroupHelper Remove(int p)
         {
             manager.Navigator.GoToGroupPage();
+            CheckGroup();
             SelectGroup(p);
             DeleteGroup();
             ReturnToGroupsPage();
             return this;
         }
-
         public GroupHelper SelectGroup(int p)
         {
-            if (IsElementPresent(By.Name("selected[]")))
-            {
-                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + p + "]")).Click();
-                return this;
-            }
-            else
-            {
-                GroupData group = new GroupData("qwesdasd");
-                group.Header = "qwqw";
-                group.Footer = "asdsdad";
-                manager.Groups.Create(group);
-                SelectGroup(p);
-                return this;
-            }
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + p + "]")).Click();
+            return this;
         }
-
         public GroupHelper EditGroup()
         {
             driver.FindElement(By.Name("edit")).Click();

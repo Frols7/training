@@ -17,30 +17,16 @@ namespace WebAddressbookTest
 
         public ContactHelper RemoveContact(int s)
         {
+            CheckContact();
             SelectContact(s);
             DeleteContact();
             return this;
-
         }
-
         public ContactHelper SelectContact(int s)
         {
-            if (IsElementPresent(By.Name("selected[]")))
-            {
-                driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
-                return this;
-            }
-            else
-            {
-                ContactData contact = new ContactData("Frol");
-                contact.LastName = "Sergeevich";
-
-                manager.Contacts.CreateContact(contact);
-                SelectContact(s);
-                return this;
-            }
+            driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
+            return this;
         }
-
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();

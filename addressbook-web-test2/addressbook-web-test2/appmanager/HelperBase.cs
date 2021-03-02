@@ -40,5 +40,34 @@ namespace WebAddressbookTest
                 return false;
             }
         }
+
+        public void CheckGroup()
+        {
+            if (IsElementPresent(By.Name("selected[]")))
+            {
+                return;
+            }
+            else
+            {
+                GroupData group = new GroupData("qwesdasd");
+                group.Header = "qwqw";
+                group.Footer = "asdsdad";
+                manager.Groups.Create(group);
+            }
+        }
+
+        public void CheckContact()
+        {
+            if (IsElementPresent(By.Name("selected[]")))
+            {
+                return;
+            }
+            else
+            {
+                ContactData contact = new ContactData("Frol");
+                contact.LastName = "Sergeevich";
+                manager.Contacts.CreateContact(contact);
+            }
+        }
     }
 }
