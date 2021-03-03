@@ -55,7 +55,6 @@ namespace WebAddressbookTest
                 manager.Groups.Create(group);
             }
         }
-
         public void CheckContact()
         {
             if (IsElementPresent(By.Name("selected[]")))
@@ -67,6 +66,7 @@ namespace WebAddressbookTest
                 ContactData contact = new ContactData("Frol");
                 contact.LastName = "Sergeevich";
                 manager.Contacts.CreateContact(contact);
+
             }
         }
     }

@@ -14,6 +14,7 @@ namespace WebAddressbookTest
         [Test]
         public void GroupRemoveTest1()
         {
+            app.Groups.CheckGroup();
             app.Groups.Remove(1);
         }
     }

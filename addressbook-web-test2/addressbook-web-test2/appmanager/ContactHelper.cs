@@ -17,7 +17,6 @@ namespace WebAddressbookTest
 
         public ContactHelper RemoveContact(int s)
         {
-            CheckContact();
             SelectContact(s);
             DeleteContact();
             return this;
