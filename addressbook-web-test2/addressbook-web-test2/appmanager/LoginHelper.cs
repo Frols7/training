@@ -37,9 +37,9 @@ namespace WebAddressbookTest
                 driver.FindElement(By.LinkText("Logout")).Click();
             }
         }
-        public bool IsLoggedIn()
+       public bool IsLoggedIn()
         {
-            return IsElementPresent(By.Name("logout"));
+           return IsElementPresent(By.Name("logout"));
         }
         public bool IsLoggedIn(AccountData account)
         {

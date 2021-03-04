@@ -28,6 +28,7 @@ namespace WebAddressbookTest
         public GroupHelper Modifai(int p, GroupData newData)
         {
             manager.Navigator.GoToGroupPage();
+            SelectGroup(p);
             EditGroup();
             FillGroupForm(newData);
             UpdateGroup();

@@ -43,6 +43,8 @@ namespace WebAddressbookTest
 
         public void CheckGroup()
         {
+            manager.Navigator.GoToGroupPage();
+
             if (IsElementPresent(By.Name("selected[]")))
             {
                 return;
