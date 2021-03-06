@@ -19,13 +19,26 @@ namespace WebAddressbookTest
         {
             SelectContact(s);
             DeleteContact();
+            manager.Navigator.GoToContactPage();
             return this;
         }
         public ContactHelper SelectContact(int s)
         {
-            driver.FindElement(By.XPath("//input[@id][" + s + "]")).Click();
+            driver.FindElement(By.XPath("//input[@id][" + (s+1) + "]")).Click();
             return this;
         }
+
+        public List<ContactData> GetContactList()
+        {
+           List<ContactData> contacts = new List<ContactData>();
+           ICollection<IWebElement> elementscontacts = driver.FindElements(By.XPath("//tr[@name='entry']"));
+           foreach (IWebElement elementcontact in elementscontacts)
+           {
+                contacts.Add(new ContactData(elementcontact.Text));
+           }
+            return contacts;
+        }
+
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
@@ -66,15 +79,15 @@ namespace WebAddressbookTest
 
         public ContactHelper EditContact(int e)
         {
-            //driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + e + "]")).Click();
-            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + (e+1) + "]")).Click();
+            //driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
             return this;
         }
         public ContactHelper CreatNewContact(ContactData contact)
         {
             Type(By.Name("firstname"), contact.FirstName);
             Type(By.Name("lastname"), contact.LastName);
-            driver.FindElement(By.Name("submit")).Click();
+            driver.FindElement(By.Name("submit")).Click(); 
             return this;
         }
         public ContactHelper ReturToHomePage()

@@ -13,12 +13,17 @@ namespace WebAddressbookTest
         [Test]
         public void ContactModificationTest1()
         {
-            app.Contacts.CheckContact();
-
             ContactData contact = new ContactData("New");
             contact.LastName = "Type";
+           
+            app.Contacts.CheckContact();
 
-            app.Contacts.ModifyContact(5, contact);
+            List<ContactData> oldContact = app.Contacts.GetContactList();
+
+            app.Contacts.ModifyContact(0, contact);
+
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            Assert.AreEqual(oldContact.Count, newContact.Count);
         }
     }
 }

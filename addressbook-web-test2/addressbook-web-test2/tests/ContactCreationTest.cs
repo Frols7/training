@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -18,7 +19,12 @@ namespace WebAddressbookTest
             ContactData contact = new ContactData("Petro");
             contact.LastName = "Petrovich";
 
+            List<ContactData> oldContact = app.Contacts.GetContactList();
+
             app.Contacts.CreateContact(contact);
+
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            Assert.AreEqual(oldContact.Count +1, newContact.Count);
         }
     }
 }

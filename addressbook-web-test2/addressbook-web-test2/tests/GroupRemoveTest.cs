@@ -14,12 +14,14 @@ namespace WebAddressbookTest
         [Test]
         public void GroupRemoveTest1()
         {
+            app.Groups.CheckGroup();
+
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
-            app.Groups.CheckGroup();
             app.Groups.Remove(0);
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
 
             oldGroups.RemoveAt(0);
             Assert.AreEqual(oldGroups, newGroups);

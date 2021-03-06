@@ -16,11 +16,23 @@ namespace WebAddressbookTest
         {
             app.Groups.CheckGroup();
 
+            List<GroupData> oldGroups = app.Groups.GetGroupList();
+
             GroupData newData = new GroupData("new");
             newData.Header = "type";
             newData.Footer = "res";
 
             app.Groups.Modifai(0, newData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
+            //List<GroupData> newGroups = app.Groups.GetGroupList();
+            //Assert.AreEqual(oldGroups.Count, newGroups.Count);
+
         }
     }
 }

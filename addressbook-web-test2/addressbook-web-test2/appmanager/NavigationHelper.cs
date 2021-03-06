@@ -33,5 +33,11 @@ namespace WebAddressbookTest
             }
             driver.FindElement(By.LinkText("groups")).Click();
         }
+
+        public void GoToContactPage()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+        }
+
     }
 }
