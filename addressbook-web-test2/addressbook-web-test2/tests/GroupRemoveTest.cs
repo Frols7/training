@@ -17,9 +17,12 @@ namespace WebAddressbookTest
             List<GroupData> oldGroups = app.Groups.GetGroupList();
 
             app.Groups.CheckGroup();
-            app.Groups.Remove(1);
+            app.Groups.Remove(0);
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
+
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
 
         }
     }

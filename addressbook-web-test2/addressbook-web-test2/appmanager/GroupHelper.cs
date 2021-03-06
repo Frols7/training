@@ -58,7 +58,7 @@ namespace WebAddressbookTest
         }
         public GroupHelper SelectGroup(int p)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + p + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (p+1) + "]")).Click();
             return this;
         }
         public GroupHelper EditGroup()
