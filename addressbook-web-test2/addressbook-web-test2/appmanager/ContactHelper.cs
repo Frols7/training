@@ -28,20 +28,26 @@ namespace WebAddressbookTest
             return this;
         }
 
+        private List<ContactData> contactCache = null;
         public List<ContactData> GetContactList()
         {
-           List<ContactData> contacts = new List<ContactData>();
-           ICollection<IWebElement> elementscontacts = driver.FindElements(By.XPath("//tr[@name='entry']"));
-           foreach (IWebElement elementcontact in elementscontacts)
-           {
-                contacts.Add(new ContactData(elementcontact.Text));
-           }
-            return contacts;
+           if (contactCache == null)
+            {
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToContactPage();
+                ICollection<IWebElement> elementscontacts = driver.FindElements(By.XPath("//tr[@name='entry']"));
+                foreach (IWebElement elementcontact in elementscontacts)
+                {
+                    contactCache.Add(new ContactData(elementcontact.Text));
+                }
+            }
+            return new List<ContactData>(contactCache);
         }
 
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             driver.SwitchTo().Alert().Accept();
             return this;
         }
@@ -74,6 +80,8 @@ namespace WebAddressbookTest
         {
             Type(By.Name("firstname"), contact.FirstName);
             Type(By.Name("lastname"), contact.LastName);
+            driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -87,7 +95,8 @@ namespace WebAddressbookTest
         {
             Type(By.Name("firstname"), contact.FirstName);
             Type(By.Name("lastname"), contact.LastName);
-            driver.FindElement(By.Name("submit")).Click(); 
+            driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
         public ContactHelper ReturToHomePage()
