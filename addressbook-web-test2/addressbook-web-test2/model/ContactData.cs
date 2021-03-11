@@ -16,50 +16,46 @@ namespace WebAddressbookTest
             this.firstname = firstname;
         }
 
-        public bool Equals(ContactData otherFirst)
+        public bool Equals(ContactData other)
         {
-            if (Object.ReferenceEquals(otherFirst, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return false;
             }
-            if (Object.ReferenceEquals(this, otherFirst))
+            if (Object.ReferenceEquals(this, other))
             {
                 return true;
             }
-            return FirstName == otherFirst.FirstName;
-           
-        }
-
-        public bool Equals2(ContactData otherLast)
-        {
-            if (Object.ReferenceEquals(otherLast, null))
-            {
-                return false;
-            }
-            if (Object.ReferenceEquals(this, otherLast))
-            {
-                return true;
-            }
-            return LastName == otherLast.LastName;
-
+            return FirstName == other.FirstName && LastName == other.LastName; ;
         }
 
         public override int GetHashCode()
         {
-            return FirstName.GetHashCode();
+            return 0;
         }
         public override string ToString()
         {
             return FirstName;
         }
 
-        public int CompareTo(ContactData otherFirst)
+        public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(otherFirst, null))
+            if (Object.ReferenceEquals(other, null))
             {
                 return 1;
             }
-            return FirstName.CompareTo(otherFirst.FirstName);
+            return FirstName.CompareTo(other.FirstName);
+
+            /*if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return FirstName.CompareTo(other.FirstName);
+
+            else
+            {
+                return LastName.CompareTo(other.LastName);
+            }*/
         }
         public string FirstName
         {

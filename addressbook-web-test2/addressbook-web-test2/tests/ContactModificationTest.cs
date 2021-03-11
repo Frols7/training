@@ -13,8 +13,8 @@ namespace WebAddressbookTest
         [Test]
         public void ContactModificationTest1()
         {
-            ContactData contact = new ContactData("New");
-            contact.LastName = "Type";
+            ContactData contact = new ContactData("Nedvdsvdfvdw");
+            contact.LastName = "Tydfvdfvdfvdfpe";
            
             app.Contacts.CheckContact();
 
@@ -22,9 +22,11 @@ namespace WebAddressbookTest
 
             app.Contacts.ModifyContact(0, contact);
 
-            List<ContactData> newContact = app.Contacts.GetContactList(); 
-            //Assert.AreEqual(oldContact, newContact);
-            Assert.AreEqual(oldContact.Count, newContact.Count);
+            List<ContactData> newContact = app.Contacts.GetContactList();
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+            //Assert.AreEqual(oldContact.Count, newContact.Count);
         }
     }
 }
