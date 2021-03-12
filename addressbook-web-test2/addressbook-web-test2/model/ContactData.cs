@@ -10,11 +10,20 @@ namespace WebAddressbookTest
     {
         private string firstname = null;
         private string lastname = null;
+        private string allPhones;
 
-        public ContactData (string firstname)
+        public ContactData(string firstname)
         {
             this.firstname = firstname;
         }
+
+        public ContactData (string firstname, string lastname)
+        {
+            this.FirstName = firstname;
+            this.LastName = lastname;
+        }
+
+
 
         public bool Equals(ContactData other)
         {
@@ -57,27 +66,38 @@ namespace WebAddressbookTest
                 return LastName.CompareTo(other.LastName);
             }*/
         }
-        public string FirstName
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; }
+        public string HomePhone { get; set; }
+        public string MobilePhone { get; set; }
+        public string WorkPhone { get; set; }
+        public string AllPhones
         {
             get
             {
-                return firstname;
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone);
+                }
             }
             set
             {
-                firstname = value;
+                allPhones = value;
             }
         }
-        public string LastName
+
+        private string CleanUp(string phone)
         {
-            get
+            if (phone == null)
             {
-                return lastname;
+                return "";
             }
-            set
-            {
-                lastname = value;
-            }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "");
         }
     }
 }
